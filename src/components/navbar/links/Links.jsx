@@ -5,15 +5,15 @@ import styles from "./links.module.css";
 import NavLink from "./navLink/navLink";
 const links = [
   {
-    title: "Homepage",
+    title: "Anasayfa",
     path: "/",
   },
   {
-    title: "About",
+    title: "Hakkımızda",
     path: "/about",
   },
   {
-    title: "Contact",
+    title: "İletişim",
     path: "/contact",
   },
   {

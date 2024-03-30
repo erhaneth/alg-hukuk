@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <div className={styles.container}>
       <Link href="/" className={styles.logo}>
-        Logo
+        Av.Ali Gümüş
       </Link>
       <div>
         <Links />

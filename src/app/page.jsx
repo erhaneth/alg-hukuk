@@ -9,8 +9,8 @@ const Home = () => {
           Alg hukuk burosu, yillarin deneyimi ile yasal haklariniza sahip cikar
         </p>
         <div className={styles.buttons}>
-          <button className={styles.button}>Learn More</button>
-          <button className={styles.button}>Contact</button>
+          <button className={styles.button}>Daha Fazla</button>
+          <button className={styles.button}>İletişim </button>
         </div>
         <div className={styles.brands}>
           <Image

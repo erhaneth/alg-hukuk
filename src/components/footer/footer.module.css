@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: space-between;
+  color: rgb(0, 0, 0);
+}
+.logo {
+  font-size: bold;
+}
+.text {
+  font-size: 12px;
+}
