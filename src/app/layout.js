@@ -5,13 +5,13 @@ import Footer from "@/components/footer/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Next App",
-  description: "Next.js starter app",
+  title: { default: "Avukat Ali Gumus" },
+  description: "Avukat Ali Gumus Burosu Diyarbakir",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="tr">
       <body className={inter.className}>
         <div className="container">
           <Navbar />

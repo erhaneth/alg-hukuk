@@ -34,9 +34,7 @@
   flex-direction: column;
   gap: 10px;
 }
-.avatar {
-  border-radius: 50%;
-}
+
 .detailTitle {
   color: gray;
   font-weight: bold;

@@ -2,6 +2,11 @@
 
 import styles from "./contact.module.css";
 import Image from "next/image";
+
+// const metadata = {
+//   title: "Avukat Ali Gumus",
+//   description: "Iletisim",
+// };
 const ContactPage = () => {
   // console.log(":heloooo");
   return (
