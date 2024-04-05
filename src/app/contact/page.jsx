@@ -1,7 +1,9 @@
-import React from "react";
+"use client";
+
 import styles from "./contact.module.css";
 import Image from "next/image";
 const ContactPage = () => {
+  // console.log(":heloooo");
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
@@ -10,7 +12,7 @@ const ContactPage = () => {
       <div className={styles.formContainer}>
         <form action="" className={styles.form}>
           <input type="text" placeholder="Ad ve Soyad" />
-          <input type="text" placeholder="Emal Adres" />
+          <input type="text" placeholder="Email Adres" />
           <input type="text" placeholder="Telefon Numarasi (Optional)" />
           <textarea
             name=""
