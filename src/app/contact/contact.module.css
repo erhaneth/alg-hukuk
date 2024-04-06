@@ -7,7 +7,7 @@
   flex: 1;
   position: relative;
   height: 500px;
-  filter: grayscale(1);
+  /* filter: grayscale(1); */
 }
 .img {
   object-fit: contain;

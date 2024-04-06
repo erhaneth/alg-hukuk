@@ -3,7 +3,15 @@ import Image from "next/image";
 import PostUser from "@/components/postUser/postUser";
 import { Suspense } from "react";
 import { getPost } from "@/lib/data";
-
+//FETCH WITH AN API
+const getData = async (slug) => {
+  const res = await fetch(`http://localhost:3000/api/blog/${slug}`);
+  console.log("respomne", res);
+  if (!res.ok) {
+    throw new Error("something went wrong!");
+  }
+  return res.json();
+};
 export const generateMetadata = async ({ params }) => {
   const { slug } = params;
   const post = await getPost(slug);
@@ -14,20 +22,18 @@ export const generateMetadata = async ({ params }) => {
 };
 
 const SinglePostPage = async ({ params }) => {
+  console.log("params here");
   const { slug } = params;
-  // const post = await getData(slug);
-  const post = await getPost(slug);
+  const post = await getData(slug);
+  // const post = await getPost(slug);
+  console.log("postsss", post);
   return (
     <div className={styles.container}>
-      <div className={styles.imgContianer}>
-        <Image
-          alt=""
-          src={post.img}
-          width={500}
-          height={600}
-          className={styles.img}
-        />
-      </div>
+      {post.img && (
+        <div className={styles.imgContainer}>
+          <Image alt="" src={post.img} fill className={styles.img} />
+        </div>
+      )}
       <div className={styles.textContainer}>
         <h1 className={styles.title}>{post?.title}</h1>
         <div className={styles.detail}>
