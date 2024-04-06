@@ -6,7 +6,7 @@ import { getPost } from "@/lib/data";
 //FETCH WITH AN API
 const getData = async (slug) => {
   const res = await fetch(`http://localhost:3000/api/blog/${slug}`);
-  console.log("respomne", res);
+  // console.log("respomne", res);
   if (!res.ok) {
     throw new Error("something went wrong!");
   }
@@ -22,11 +22,11 @@ export const generateMetadata = async ({ params }) => {
 };
 
 const SinglePostPage = async ({ params }) => {
-  console.log("params here");
+  // console.log("params here");
   const { slug } = params;
   const post = await getData(slug);
   // const post = await getPost(slug);
-  console.log("postsss", post);
+  // console.log("postsss", post);
   return (
     <div className={styles.container}>
       {post.img && (

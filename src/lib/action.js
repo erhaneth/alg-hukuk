@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { Post, User } from "./models";
 import { connectToDb } from "./utils";
 import { signIn, signOut } from "./auth";
-
+import bcrypt from "bcrypt";
 export const addPost = async (prevState, formData) => {
   // const title = formData.get("title");
   // const desc = formData.get("desc");
@@ -22,7 +22,7 @@ export const addPost = async (prevState, formData) => {
     });
 
     await newPost.save();
-    console.log("saved to db");
+    // console.log("saved to db");
     revalidatePath("/blog");
     revalidatePath("/admin");
   } catch (err) {
@@ -50,4 +50,32 @@ export const handleGithubLogin = async () => {
 };
 export const handleLogout = async () => {
   await signOut();
+};
+export const register = async (formData) => {
+  const { username, email, password, img, passwordRepeat } =
+    Object.fromEntries(formData);
+  if (password !== passwordRepeat) {
+    return "Sifre eslesmiyor, Deli!";
+  }
+  try {
+    connectToDb();
+
+    const user = await User.findOne({ username });
+    if (user) {
+      return "Username alreay exist";
+    }
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    const newUser = new User({
+      username,
+      email,
+      password: hashedPassword,
+      img,
+    });
+    await newUser.save();
+    console.log("saved to db");
+  } catch (error) {
+    console.log(error);
+    return { error: "something went wrong" };
+  }
 };
