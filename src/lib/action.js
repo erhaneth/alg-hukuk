@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { Post, User } from "./models";
 import { connectToDb } from "./utils";
 import { signIn, signOut } from "./auth";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 export const addPost = async (prevState, formData) => {
   // const title = formData.get("title");
   // const desc = formData.get("desc");
@@ -51,18 +51,18 @@ export const handleGithubLogin = async () => {
 export const handleLogout = async () => {
   await signOut();
 };
-export const register = async (formData) => {
+export const register = async (previousState, formData) => {
   const { username, email, password, img, passwordRepeat } =
     Object.fromEntries(formData);
   if (password !== passwordRepeat) {
-    return "Sifre eslesmiyor, Deli!";
+    return { error: "Sifre eslesmiyor, Deli!" };
   }
   try {
     connectToDb();
 
     const user = await User.findOne({ username });
     if (user) {
-      return "Username alreay exist";
+      return { error: "Bu Kullanici Kayitli" };
     }
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -74,8 +74,23 @@ export const register = async (formData) => {
     });
     await newUser.save();
     console.log("saved to db");
+    return { success: true };
   } catch (error) {
     console.log(error);
     return { error: "something went wrong" };
+  }
+};
+export const login = async (previousState, formData) => {
+  const { username, password } = Object.fromEntries(formData);
+
+  try {
+    await signIn("credentials", { username, password });
+    // console.log("saved to db");
+  } catch (error) {
+    console.log(error);
+    if (error.message.includes("CredentialsSignin")) {
+      return { error: "Gecersiz isim veya sifre" };
+    }
+    throw error;
   }
 };

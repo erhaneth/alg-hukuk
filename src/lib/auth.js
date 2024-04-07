@@ -2,6 +2,28 @@ import NextAuth from "next-auth";
 import GitHub from "next-auth/providers/github";
 import { connectToDb } from "./utils";
 import { User } from "./models";
+import CredentialsProvider from "next-auth/providers/credentials";
+import bcrypt from "bcryptjs";
+
+const login = async (credentials) => {
+  try {
+    connectToDb();
+    const user = await User.findOne({ username: credentials.username });
+    if (!user) {
+      throw new Error("yanlis kullanici adi");
+    }
+    const isPasswordCorrect = await bcrypt.compare(
+      credentials.password,
+      user.password
+    );
+    if (!isPasswordCorrect) {
+      throw new Error("yanlis sifre");
+    }
+    return user;
+  } catch (error) {
+    console.log("cant login", error);
+  }
+};
 export const {
   handlers: { GET, POST },
   auth,
@@ -12,6 +34,16 @@ export const {
     GitHub({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
+    }),
+    CredentialsProvider({
+      async authorize(credentials) {
+        try {
+          const user = await login(credentials);
+          return user;
+        } catch (error) {
+          return null;
+        }
+      },
     }),
   ],
   callbacks: {
