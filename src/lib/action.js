@@ -46,7 +46,7 @@ export const deletePost = async (formData) => {
   }
 };
 
-const addUser = async (prevState, formData) => {
+export const addUser = async (prevState, formData) => {
   const { username, email, password, img } = Object.fromEntries(formData);
 
   try {
@@ -66,7 +66,7 @@ const addUser = async (prevState, formData) => {
   }
 };
 
-const deleteUser = async (formData) => {
+export const deleteUser = async (formData) => {
   const { id } = Object.fromEntries(formData);
 
   try {

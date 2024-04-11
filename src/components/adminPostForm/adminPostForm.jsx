@@ -2,9 +2,9 @@
 
 import { addPost } from "@/lib/action";
 import styles from "./adminPostForm.module.css";
-import { userFormState } from "react-dom";
+import { useFormState } from "react-dom";
 export const AdminPostForm = ({ userId }) => {
-  const [state, formAction] = userFormState(addPost, undefined);
+  const [state, formAction] = useFormState(addPost, undefined);
   return (
     <form action={formAction} className={styles.container}>
       <h1>Yeni Makele Ekle</h1>
@@ -14,7 +14,7 @@ export const AdminPostForm = ({ userId }) => {
       <input type="text" name="img" placeholder="img" />
       <textarea type="text" name="desc" placeholder="desc" rows={10} />
       <button>Ekle</button>
-      {state?.error}
+      {state && state.error}
     </form>
   );
 };
