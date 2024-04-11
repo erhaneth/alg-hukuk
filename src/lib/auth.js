@@ -4,24 +4,24 @@ import { connectToDb } from "./utils";
 import { User } from "./models";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-
+import { authConfig } from "../lib/auth.config";
 const login = async (credentials) => {
   try {
     connectToDb();
     const user = await User.findOne({ username: credentials.username });
     if (!user) {
-      throw new Error("yanlis kullanici adi");
+      throw new Error("yanlis kullanici adi!");
     }
     const isPasswordCorrect = await bcrypt.compare(
       credentials.password,
       user.password
     );
     if (!isPasswordCorrect) {
-      throw new Error("yanlis sifre");
+      throw new Error("yanlis sifre!");
     }
     return user;
   } catch (error) {
-    console.log("cant login", error);
+    console.log("giris yapilamiyor!", error);
   }
 };
 export const {
@@ -30,6 +30,7 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
+  ...authConfig,
   providers: [
     GitHub({
       clientId: process.env.GITHUB_ID,
@@ -68,5 +69,6 @@ export const {
       }
       return true;
     },
+    ...authConfig.callbacks,
   },
 });

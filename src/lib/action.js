@@ -45,6 +45,41 @@ export const deletePost = async (formData) => {
     return { error: "Something went wrong!" };
   }
 };
+
+const addUser = async (prevState, formData) => {
+  const { username, email, password, img } = Object.fromEntries(formData);
+
+  try {
+    connectToDb();
+    const newUser = new User({
+      username,
+      email,
+      password,
+      img,
+    });
+    await newUser.save();
+    console.log("Kullanici Kaydedildi1!");
+    revalidatePath("/admin");
+  } catch (error) {
+    console.log(error);
+    return { error: "Bir seyler ters gitti!" };
+  }
+};
+
+const deleteUser = async (formData) => {
+  const { id } = Object.fromEntries(formData);
+
+  try {
+    connectToDb();
+    await Post.deleteMany({ userId: id });
+    await User.findByIdAndDelete(id);
+    console.log("deleted from db");
+    revalidatePath("/admin");
+  } catch (error) {
+    console.log(error);
+    return { error: "Bir seyler ters gitti kullanici silerken!" };
+  }
+};
 export const handleGithubLogin = async () => {
   await signIn("github");
 };
