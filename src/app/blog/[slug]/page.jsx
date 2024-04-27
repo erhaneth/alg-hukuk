@@ -16,8 +16,8 @@ export const generateMetadata = async ({ params }) => {
   const { slug } = params;
   const post = await getPost(slug);
   return {
-    title: post.title,
-    description: post.desc,
+    title: post?.title,
+    description: post?.desc,
   };
 };
 
@@ -27,11 +27,14 @@ const SinglePostPage = async ({ params }) => {
   const post = await getData(slug);
   // const post = await getPost(slug);
   // console.log("postsss", post);
+  if (!post) {
+    return <div>Makale bulunamdi...</div>; // Or any other appropriate fallback
+  }
   return (
     <div className={styles.container}>
-      {post.img && (
+      {post?.img && (
         <div className={styles.imgContainer}>
-          <Image alt="" src={post.img} fill className={styles.img} />
+          <Image alt="" src={post?.img} fill className={styles.img} />
         </div>
       )}
       <div className={styles.textContainer}>
@@ -45,7 +48,7 @@ const SinglePostPage = async ({ params }) => {
           <div className={styles.detailText}>
             <span className={styles.detailTitle}>Paylasildi</span>
             <span className={styles.detailValue}>
-              {post.createdAt.toString().slice(4, 16)}
+              {post.createdAt && post.createdAt.toString().slice(4, 16)}
             </span>
           </div>
         </div>

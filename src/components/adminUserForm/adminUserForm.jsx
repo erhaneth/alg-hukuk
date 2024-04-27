@@ -6,7 +6,11 @@ import { useFormState } from "react-dom";
 
 const AdminUserForm = () => {
   const [state, formAction] = useFormState(addUser, undefined);
-
+  const handleFileInput = (e) => {
+    const file = e.target.files[0];
+    // You can handle the file here, e.g., by setting it in the state or preparing it to be uploaded
+    console.log(file);
+  };
   return (
     <form action={formAction} className={styles.container}>
       <h1>Yeni Kullanici Ekle</h1>

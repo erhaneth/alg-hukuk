@@ -1,35 +1,56 @@
 "use client";
 
-import styles from "./contact.module.css";
+import React, { useState } from "react";
 import Image from "next/image";
+import styles from "./contact.module.css";
 
-// const metadata = {
-//   title: "Avukat Ali Gumus",
-//   description: "Iletisim",
-// };
 const ContactPage = () => {
-  // console.log(":heloooo");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Here you can handle the submission, e.g., send data to an API
+    console.log({ name, email, phone, message });
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
-        <Image src="/image/contact.png" alt="" fill />
+        <Image src="/image/contact.png" alt="Contact Image" fill />
       </div>
       <div className={styles.formContainer}>
-        <form action="" className={styles.form}>
-          <input type="text" placeholder="Ad ve Soyad" />
-          <input type="text" placeholder="Email Adres" />
-          <input type="text" placeholder="Telefon Numarasi (Optional)" />
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Ad ve Soyad"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Email Adresi"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Telefon Numarasi (Optional)"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+          />
           <textarea
-            name=""
-            id=""
             cols="30"
             rows="10"
-            placeholder="mesaj"
+            placeholder="Mesaj"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
           ></textarea>
-          <button>Gonder</button>
+          <button type="submit">Gönder</button>
         </form>
       </div>
-      {/* <div></div> */}
     </div>
   );
 };

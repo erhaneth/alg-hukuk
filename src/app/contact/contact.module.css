@@ -28,7 +28,9 @@
   outline: none;
   background-color: var(--text);
   color: black;
-  text-decoration: solid;
+  /* text-decoration: solid; */
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 16px;
 }
 .form button {
   padding: 20px;

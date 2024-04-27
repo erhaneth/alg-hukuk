@@ -3,15 +3,22 @@
   flex-direction: column;
   gap: 20px;
 }
+.container input::placeholder,
+.container select::placeholder {
+  color: white; /* This will change the placeholder text color to white */
+}
 
 .container input,
 .container textarea,
 .container select {
   padding: 20px;
-  background-color: var(--bgSoft);
+  background-color: var(--bg);
   border: none;
   border-radius: 5px;
   color: var(--text);
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 16px;
+  /* text-decoration: aliceblue; */
 }
 .container button {
   padding: 20px;

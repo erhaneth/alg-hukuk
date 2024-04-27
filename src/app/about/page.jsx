@@ -20,16 +20,37 @@ const AboutPage = () => {
         </p>
         <div className={styles.boxes}>
           <div className={styles.box}>
-            <h1>10 </h1>
-            <p>deneyimi</p>
+            <h1>Deneyim</h1>
+            <p>
+              Türk hukukuyla ilgili karmaşık süreçlerden mi geçiyorsunuz?
+              Tanışın, [Avukatın Adı], Türk hukuk sisteminde [sayı] yıllık
+              deneyime sahip bir uzman. İster iş sözleşmeleri, ister mülkiyet
+              anlaşmazlıkları, ister göçmenlik meseleleri olsun, [Avukatın Adı]
+              Türkiye'deki özel hukuki ihtiyaçlarınıza uygun benzersiz rehberlik
+              ve stratejik çözümler sunar.
+            </p>
           </div>
           <div className={styles.box}>
-            <h1>10k</h1>
-            <p>deneyimi</p>
+            <h1>Guven</h1>
+            <p>
+              Mirasınızı güvence altına alın ve sevdiklerinizi [Avukatın Adı]
+              ile koruyun, güvenilir bir vasiyet hukuku danışmanı. [Sayı] yıl
+              uzmanlık deneyimi ile [Avukatın Adı], varlıklarınızı koruyan ve
+              dileklerinizi onurlandıran titiz planlama ve kişiselleştirilmiş
+              hukuki stratejiler sağlar. Mal varlığınızla ilgili her kararda
+              huzur için [Avukatın Adı] ile iş birliği yapın.
+            </p>
           </div>
           <div className={styles.box}>
-            <h1>10k</h1>
-            <p>deneyimi</p>
+            <h1>Cozum icin</h1>
+            <p>
+              Hukuki sorunlarla mı karşı karşıyasınız? Beklemeyin! Hemen
+              [Avukatın Adı]'nı [telefon numarası] numarasından arayın ve derhal
+              yardım alın. [Sayı] yıl deneyimi ve kanıtlanmış bir başarı geçmişi
+              ile [Avukatın Adı], güvenebileceğiniz uzman hukuki danışmanlık
+              sunar. Haklarınızı korumak ve olumlu bir sonuç almak için şimdi
+              harekete geçin.
+            </p>
           </div>
         </div>
       </div>
