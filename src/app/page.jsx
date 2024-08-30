@@ -1,47 +1,31 @@
 import styles from "./home.module.css";
-import Image from "next/image";
-import Whatsapp from "@/lib/whatsapp/whatsapp";
 import { GoLaw } from "react-icons/go";
+import { FaWhatsapp } from "react-icons/fa"; // Import WhatsApp icon
 import Link from "next/link"; // Import Link from next/link
 
 const Home = () => {
   return (
     <div className={styles.container}>
+      <div className={styles.overlay}></div>{" "}
+      {/* Overlay for better text readability */}
       <div className={styles.textContainer}>
-        <h1 className={styles.title}>Alg hukuk burosu guven verir</h1>
+        <h1 className={styles.title}>Alg Hukuk Bürosu Güven Verir</h1>
         <p className={styles.description}>
-          Alg hukuk burosu, yillarin deneyimi ile yasal haklariniza sahip cikar
+          Alg Hukuk Bürosu, yılların deneyimi ile yasal haklarınıza sahip çıkar.
         </p>
-        <div className={styles.buttons}>
-          {/* <button className={styles.button}>Daha Fazla</button> */}
-          <Link href="/contact" passHref>
-            {" "}
-            {/* Use Link component here */}
-            <button className={styles.button}>İletişim</button>{" "}
-            {/* Apply className to button */}
-          </Link>
-          <div>
-            <Whatsapp />
-          </div>
-        </div>
-        <div className={styles.brands}>
-          {/* Image component can be uncommented and used here */}
-          {/* <Image
-              src="/image/brands.png"
-              alt=""
-              fill
-              className={styles.brandImg}
-          /> */}
-        </div>
       </div>
-      <div className={styles.imgContainer}>
-        <Image
-          src="/image/slide-terazi.jpg"
-          alt="Decorative image"
-          fill
-          className={styles.heroImg}
-          sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 600px"
-        />
+      <div className={styles.buttons}>
+        <Link href="/contact" passHref>
+          <button className={styles.button}>İletişim</button>
+        </Link>
+        <a
+          href="https://wa.me/+905355022106" // Replace with your WhatsApp number
+          className={styles.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaWhatsapp />
+        </a>
       </div>
     </div>
   );

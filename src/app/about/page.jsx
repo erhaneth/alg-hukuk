@@ -1,10 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import styles from "./about.module.css";
+
 export const metadata = {
   title: "Avukat Ali Gumus",
   description: "Hakkimizda",
 };
+
 const AboutPage = () => {
   return (
     <div className={styles.container}>
@@ -31,7 +33,7 @@ const AboutPage = () => {
             </p>
           </div>
           <div className={styles.box}>
-            <h1>Guven</h1>
+            <h1>Güven</h1>
             <p>
               Mirasınızı güvence altına alın ve sevdiklerinizi [Avukatın Adı]
               ile koruyun, güvenilir bir vasiyet hukuku danışmanı. [Sayı] yıl
@@ -42,7 +44,7 @@ const AboutPage = () => {
             </p>
           </div>
           <div className={styles.box}>
-            <h1>Cozum icin</h1>
+            <h1>Çözüm İçin</h1>
             <p>
               Hukuki sorunlarla mı karşı karşıyasınız? Beklemeyin! Hemen
               [Avukatın Adı]'nı [telefon numarası] numarasından arayın ve derhal
@@ -57,8 +59,8 @@ const AboutPage = () => {
       <div className={styles.imgContainer}>
         <Image
           src="/image/about.png"
-          alt="About Imgae"
-          fill
+          alt="About Image"
+          layout="fill"
           className={styles.img}
         />
       </div>

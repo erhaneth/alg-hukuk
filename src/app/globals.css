@@ -24,11 +24,13 @@ a {
   width: 1536px;
   margin: auto;
   padding-left: 50px;
+  height: 100vh;
   padding-right: 50px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
 }
 
 @media (max-width: 1536px) {

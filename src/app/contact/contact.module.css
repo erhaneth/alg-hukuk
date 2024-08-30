@@ -1,19 +1,25 @@
 .container {
   display: flex;
+  flex-direction: column; /* Default to column for better mobile support */
   align-items: center;
-  gap: 100px;
+  gap: 20px; /* Reduced gap for better spacing */
+  padding: 20px; /* Added padding for better spacing */
+  background-color: #f9f9f9; /* Light background color */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 .imgContainer {
-  flex: 1;
+  width: 100%; /* Full width for mobile */
   position: relative;
-  height: 500px;
-  /* filter: grayscale(1); */
+  height: 300px; /* Reduced height for mobile */
+  border-radius: 10px; /* Rounded corners */
+  overflow: hidden; /* Ensure image fits within rounded corners */
 }
 .img {
-  object-fit: contain;
+  object-fit: cover; /* Cover instead of contain for better fit */
 }
 .formContainer {
-  flex: 1;
+  width: 100%; /* Full width for mobile */
 }
 .form {
   display: flex;
@@ -22,28 +28,43 @@
 }
 .form input,
 .form textarea {
-  padding: 20px;
+  padding: 15px; /* Reduced padding for better spacing */
   border-radius: 5px;
-  border: none;
+  border: 1px solid #ccc; /* Light border */
   outline: none;
-  background-color: var(--text);
-  color: black;
-  /* text-decoration: solid; */
+  background-color: #fff; /* White background */
+  color: #333; /* Darker text color */
   font-family: "Helvetica", "Arial", sans-serif;
   font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+.form input:focus,
+.form textarea:focus {
+  border-color: #0070f3; /* Blue border on focus */
 }
 .form button {
-  padding: 20px;
-  background-color: var(--btn);
-  color: var(--text);
+  padding: 15px; /* Reduced padding for better spacing */
+  background-color: #0070f3; /* Blue background */
+  color: #fff; /* White text */
   font-weight: 600;
-  font-size: 25px;
+  font-size: 18px; /* Reduced font size */
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition */
 }
-@media (max-width: 768px) {
+.form button:hover {
+  background-color: #005bb5; /* Darker blue on hover */
+}
+@media (min-width: 768px) {
   .container {
-    flex-direction: column;
+    flex-direction: row; /* Row layout for larger screens */
+    gap: 50px; /* Increased gap for larger screens */
+  }
+  .imgContainer {
+    height: 500px; /* Increased height for larger screens */
+  }
+  .formContainer {
+    flex: 1;
   }
 }

@@ -1,60 +1,96 @@
 .container {
   display: flex;
-  gap: 100px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  background: url("/image/slide-terazi.jpg") no-repeat center center;
+  background-size: cover;
+  color: #ffffff;
+  position: relative;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.6
+  ); /* Darker overlay for better text readability */
+  z-index: 1;
 }
 .textContainer {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px; /* Limit the width for better readability */
+  padding: 20px;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Semi-transparent background for text */
+  border-radius: 10px;
 }
 .title {
-  font-size: 96px;
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 .description {
-  font-size: 26px;
+  font-size: 20px;
+  margin-bottom: 40px;
 }
 .buttons {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 2;
 }
 .button {
-  padding: 10px;
-  min-width: 120px;
+  padding: 12px 20px;
+  min-width: 150px;
   cursor: pointer;
   border: none;
   border-radius: 5px;
+  background-color: #2980b9;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  transition: background-color 0.3s;
 }
-.button:first-child {
-  background-color: var(--btn);
-  color: var(--text-color);
+.button:hover {
+  background-color: #1c598a;
 }
-
-.brands {
-  width: 500px;
+.whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
   height: 50px;
-  position: relative;
-  filter: grayscale(1);
+  background-color: #25d366;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
-.imgContainer {
-  flex: 1;
-  position: relative;
+.whatsapp:hover {
+  background-color: #1ebc57;
 }
-
-@media (max-width: 1024px) {
-  .container {
-    flex-direction: column;
-    text-align: center;
+@media (min-width: 768px) {
+  .textContainer {
+    text-align: left;
   }
   .buttons {
-    justify-content: center;
-  }
-}
-@media (max-width: 768px) {
-  .title {
-    font-size: 64px;
-  }
-  .brands {
-    width: 100%;
+    flex-direction: row;
   }
 }
