@@ -1,19 +1,42 @@
 "use client";
-
 import React, { useState } from "react";
 import Image from "next/image";
 import styles from "./contact.module.css";
+import axios from "axios";
 
 const ContactPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Here you can handle the submission, e.g., send data to an API
-    console.log({ name, email, phone, message });
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await axios.post("/api/sendgrid", {
+        name,
+        email,
+        phone,
+        message,
+      });
+
+      if (response.status !== 200) {
+        throw new Error("Failed to send email");
+      }
+
+      setSuccess(true);
+      setLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+    }
   };
 
   return (
@@ -48,7 +71,13 @@ const ContactPage = () => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           ></textarea>
-          <button type="submit">Gönder</button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Gönderiliyor..." : "Gönder"}
+          </button>
+          {error && <p style={{ color: "red" }}>Error: {error}</p>}
+          {success && (
+            <p style={{ color: "green" }}>Email sent successfully!</p>
+          )}
         </form>
       </div>
     </div>

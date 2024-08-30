@@ -8,9 +8,11 @@ export const metadata = {
   description: "Blog",
 };
 const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/blog", {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const res = await fetch(`${baseUrl}/api/blog`, {
     next: { revalidate: 3600 },
   });
+  console.log("THIS IS RESPONSE", res);
   if (!res.ok) {
     throw new Error("Something went wrong");
   }

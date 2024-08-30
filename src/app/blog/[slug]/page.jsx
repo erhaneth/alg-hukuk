@@ -5,13 +5,17 @@ import { Suspense } from "react";
 import { getPost } from "@/lib/data";
 //FETCH WITH AN API
 const getData = async (slug) => {
-  const res = await fetch(`http://localhost:3000/api/blog/${slug}`);
-  // console.log("respomne", res);
+  // Use an environment variable for the API URL
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+
+  const res = await fetch(`${baseUrl}/api/blog/${slug}`);
   if (!res.ok) {
-    throw new Error("something went wrong!");
+    throw new Error("Something went wrong!");
   }
+
   return res.json();
 };
+
 export const generateMetadata = async ({ params }) => {
   const { slug } = params;
   const post = await getPost(slug);
